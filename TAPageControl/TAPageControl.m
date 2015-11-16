@@ -96,6 +96,7 @@ static CGSize const kDefaultDotSize = {8, 8};
  */
 - (void)initialization
 {
+    self.dotBorderColor         = [UIColor whiteColor];
     self.dotViewClass           = [TAAnimatedDotView class];
     self.spacingBetweenDots     = kDefaultSpacingBetweenDots;
     self.numberOfPages          = kDefaultNumberOfPages;
@@ -216,6 +217,7 @@ static CGSize const kDefaultDotSize = {8, 8};
     
     if (self.dotViewClass) {
         dotView = [[self.dotViewClass alloc] initWithFrame:CGRectMake(0, 0, self.dotSize.width, self.dotSize.height)];
+        dotView.layer.borderColor = self.dotBorderColor.CGColor;
     } else {
         dotView = [[UIImageView alloc] initWithImage:self.dotImage];
         dotView.frame = CGRectMake(0, 0, self.dotSize.width, self.dotSize.height);
@@ -351,6 +353,21 @@ static CGSize const kDefaultDotSize = {8, 8};
     }
 }
 
+- (void)setDotBorderColor:(UIColor *)dotBorderColor
+{
+    if (_dotBorderColor != dotBorderColor)
+    {
+        _dotBorderColor = dotBorderColor;
+        
+        if (self.dotViewClass != nil)
+        {
+            for (UIView * dot in self.dots)
+            {
+                dot.layer.borderColor = self.dotBorderColor.CGColor;
+            }
+        }
+    }
+}
 #pragma mark - Getters
 
 

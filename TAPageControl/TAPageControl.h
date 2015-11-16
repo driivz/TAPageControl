@@ -10,6 +10,7 @@
 
 @protocol TAPageControlDelegate;
 
+IB_DESIGNABLE
 @interface TAPageControl : UIControl
 
 
@@ -19,6 +20,7 @@
 
 /**
  *  The Class of your custom UIView, make sure to respect the TAAbstractDotView class.
+ *  Default is TAAnimatedDotView
  */
 @property (nonatomic) Class dotViewClass;
 
@@ -40,6 +42,11 @@
  */
 
 @property (nonatomic) IBInspectable CGSize dotSize;
+
+/**
+ *  Dot border color. Default is UIColor.whiteColor.
+ */
+@property (nonatomic) IBInspectable UIColor * dotBorderColor;
 
 
 /**
