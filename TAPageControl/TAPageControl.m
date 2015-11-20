@@ -96,7 +96,9 @@ static CGSize const kDefaultDotSize = {8, 8};
  */
 - (void)initialization
 {
+#if TARGET_INTERFACE_BUILDER
     self.dotBorderColor         = [UIColor whiteColor];
+#endif
     self.dotViewClass           = [TAAnimatedDotView class];
     self.spacingBetweenDots     = kDefaultSpacingBetweenDots;
     self.numberOfPages          = kDefaultNumberOfPages;
@@ -217,7 +219,9 @@ static CGSize const kDefaultDotSize = {8, 8};
     
     if (self.dotViewClass) {
         dotView = [[self.dotViewClass alloc] initWithFrame:CGRectMake(0, 0, self.dotSize.width, self.dotSize.height)];
+#if TARGET_INTERFACE_BUILDER
         dotView.layer.borderColor = self.dotBorderColor.CGColor;
+#endif
     } else {
         dotView = [[UIImageView alloc] initWithImage:self.dotImage];
         dotView.frame = CGRectMake(0, 0, self.dotSize.width, self.dotSize.height);
@@ -353,6 +357,7 @@ static CGSize const kDefaultDotSize = {8, 8};
     }
 }
 
+#if TARGET_INTERFACE_BUILDER
 - (void)setDotBorderColor:(UIColor *)dotBorderColor
 {
     if (_dotBorderColor != dotBorderColor)
@@ -368,6 +373,8 @@ static CGSize const kDefaultDotSize = {8, 8};
         }
     }
 }
+#endif
+
 #pragma mark - Getters
 
 
