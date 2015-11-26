@@ -43,12 +43,10 @@ IB_DESIGNABLE
 
 @property (nonatomic) IBInspectable CGSize dotSize;
 
-#if TARGET_INTERFACE_BUILDER
 /**
  *  Dot border color. Default is UIColor.whiteColor. Affects design-time only!
  */
 @property (nonatomic) IBInspectable UIColor * dotBorderColor;
-#endif
 
 /**
  *  Spacing between two dot views. Default is 8.
