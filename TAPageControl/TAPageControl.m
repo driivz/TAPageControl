@@ -108,6 +108,13 @@ static CGSize const kDefaultDotSize = {8, 8};
     _dotSize = kDefaultDotSize;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    // Workaround for Xcode 8 issue http://stackoverflow.com/questions/39578530/since-xcode-8-and-ios10-views-are-not-sized-properly-on-viewdidlayoutsubviews
+    [self updateDots];
+    // End of workaround
+}
 
 #pragma mark - Touch event
 
@@ -281,7 +288,6 @@ static CGSize const kDefaultDotSize = {8, 8};
 }
 
 #pragma mark - Setters
-
 
 - (void)setNumberOfPages:(NSInteger)numberOfPages
 {
