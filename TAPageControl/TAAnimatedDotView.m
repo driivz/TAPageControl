@@ -10,6 +10,7 @@
 
 static CGFloat const kAnimateDuration = 1;
 
+
 @implementation TAAnimatedDotView
 
 - (instancetype)init
@@ -65,14 +66,23 @@ static CGFloat const kAnimateDuration = 1;
 
 - (void)animateToActiveState
 {
+    const CGFloat translationRate = 1.4;
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 10
+    self.layer.cornerRadius = CGRectGetWidth(self.frame) / (2 * translationRate);
+#endif
+    
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:-20 options:UIViewAnimationOptionCurveLinear animations:^{
         self.backgroundColor = [UIColor whiteColor];
-        self.transform = CGAffineTransformMakeScale(1.4, 1.4);
+        self.transform = CGAffineTransformMakeScale(translationRate, translationRate);
     } completion:nil];
 }
 
 - (void)animateToDeactiveState
 {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 10
+    self.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
+#endif
     [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.backgroundColor = [UIColor clearColor];
         self.transform = CGAffineTransformIdentity;
